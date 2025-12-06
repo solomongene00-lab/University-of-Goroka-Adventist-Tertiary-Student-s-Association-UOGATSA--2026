@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>University of Goroka Adventist Tertiary Students Association</title>
+<style>
+/* ---------------- GLOBAL ---------------- */
+body,html{
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    min-height:100%;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ---------------- BACKGROUND IMAGE ---------------- */
+.bg-slideshow{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    background: url('uogbc1.jpeg') center center/cover no-repeat;
+    opacity:0.8;
+}
+
+/* ---------------- LOGO & HEADER ---------------- */
+header{
+    text-align:center;
+    padding:10px 0;
+}
+.logo-wrapper{
+    width:140px;
+    height:140px;
+    margin:auto;
+    border-radius:50%;
+    background:white;
+    padding:10px;
+    overflow:hidden;
+}
+.logo-wrapper img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* Green overlay sections under logo */
+.top-tabs{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:15px;
+    background:rgba(0,150,0,0.85);
+    padding:10px 0;
+    border-radius:8px;
+    flex-wrap:wrap;
+}
+.top-tab{
+    color:white;
+    font-weight:bold;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:8px;
+    text-decoration:none;
+    transition:0.3s;
+}
+.top-tab:hover{
+    background:rgba(0,200,0,1);
+}
+
+/* ---------------- HERO ---------------- */
+.hero{
+    text-align:center;
+    margin-top:20px;
+    background: rgba(0, 180, 255, 0.7);
+    padding: 30px 20px;
+    border-radius: 12px;
+    max-width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.hero h1{
+    font-size:28px;
+    margin-bottom:10px;
+    color:white;
+}
+
+/* ---------------- CARD SECTIONS ---------------- */
+.card-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin-top:30px;
+    padding:0 20px;
+}
+.card{
+    padding:20px;
+    border-radius:10px;
+    min-width:250px;
+    max-width:320px;
+    text-align:center;
+    color:black;
+    font-weight:bold;
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
+}
+#emmanuellas{
+    background: rgba(255, 255, 0, 0.7);
+}
+#visionarries{
+    background: rgba(0, 102, 204, 0.7);
+}
+
+/* ---------------- PRESIDENT PROFILE RECTANGULAR OVERLAY ---------------- */
+#president-profile{
+    display:flex;
+    justify-content:center;
+    margin:40px 0 20px 0;
+}
+.profile-wrapper-rect{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.profile-wrapper-rect img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid gold;
+}
+.profile-overlay-rect{
+    width:180px;
+    background:rgba(139,69,19,0.85); /* brown rectangle */
+    color:white;
+    text-align:center;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+}
+.profile-overlay-rect h3{
+    margin:5px 0;
+}
+.profile-overlay-rect p{
+    margin:2px 0;
+    font-size:12px;
+}
+
+/* ---------------- GALLERY ---------------- */
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+.gallery img{
+    width:100%;
+    max-width:280px;
+    border:3px solid white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* ---------------- MODAL ---------------- */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+.modal{
+    background:white;
+    padding:20px;
+    width:90%; max-width:800px;
+    border-radius:10px;
+    color:black;
+    text-align:center;
+}
+.close-btn{
+    float:right;
+    background:red;
+    color:white;
+    padding:6px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* Tabs inside modal */
+.tabs{display:flex;gap:10px;margin:15px 0;justify-content:center;}
+.tab{
+    padding:10px 15px;
+    background:#0040c4;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+}
+.tab.active{background:#0ea37a;}
+.tab-content{display:none;text-align:center;}
+.tab-content.active{display:block;}
+
+/* ---------------- BIBLE VERSE ---------------- */
+#verse-box{
+    position:fixed;
+    top:10px;
+    left:10px;
+    background:rgba(120,0,200,0.75);
+    padding:10px 15px;
+    max-width:260px;
+    border-radius:10px;
+    font-size:14px;
+    z-index:999;
+}
+
+/* ---------------- FOOTER ---------------- */
+footer{
+    text-align:center;
+    margin:50px 0;
+    font-size:14px;
+    background:rgba(0,0,200,0.6);
+    padding:15px;
+    border-radius:8px;
+}
+footer a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+footer a:hover{
+    text-decoration:underline;
+}
+
+/* ---------------- ADMIN BUTTON ---------------- */
+#admin-btn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:gold;
+    color:black;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    z-index:999;
+}
+#admin-panel{
+    display:none;
+    background:rgba(0,0,0,0.75);
+    padding:20px;
+    margin:20px auto;
+    border-radius:10px;
+    max-width:600px;
+    text-align:center;
+}
+#admin-panel input{
+    margin:10px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ADMIN LOGIN BUTTON -->
+<div id="admin-btn" onclick="adminLogin()">Admin Login</div>
+
+<!-- BACKGROUND IMAGE -->
+<div id="bg" class="bg-slideshow"></div>
+
+<!-- BIBLE VERSE BOX -->
+<div id="verse-box">Loading verse...</div>
+
+<div class="content">
+
+<!-- LOGO -->
+<header>
+    <div class="logo-wrapper">
+        <img src="uogatsalogo.jpg" alt="UOGATSA Logo">
+    </div>
+
+    <!-- Green overlay sections under logo -->
+    <div class="top-tabs">
+        <a class="top-tab" href="#emmanuellas">Emmanuellas</a>
+        <a class="top-tab" href="#visionarries">Visionarries</a>
+        <span class="top-tab" onclick="openModal()">Access</span>
+        <a class="top-tab" href="https://www.adventist.org" target="_blank">Updates</a>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Welcome to University of Goroka Adventist<br>Tertiary Student's Association (UOGATSA)</h1>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+    <h2>Admin Control Panel</h2>
+
+    <h3>Upload Gallery Images</h3>
+    <input type="file" id="uploader" multiple accept="image/*">
+    <div id="gallery" class="gallery"></div>
+
+    <h3>Upload Documents</h3>
+    <input type="file" id="docs" multiple>
+    <div id="doc-list"></div>
+
+    <h3>Upload Other Files</h3>
+    <input type="file" id="other" multiple>
+</div>
+
+<!-- SECTIONS -->
+<div class="card-container">
+    <div id="emmanuellas" class="card">
+        <h2>Emmanuellas</h2>
+        <p>Spiritual empowerment and strengthening sisterhood bound.</p>
+    </div>
+    <div id="visionarries" class="card">
+        <h2>Visionarries</h2>
+        <p>Leadership, creativity and strengthening brotherhood bound.</p>
+    </div>
+</div>
+
+<!-- PRESIDENT PROFILE WITH RECTANGULAR OVERLAY -->
+<div id="president-profile">
+    <div class="profile-wrapper-rect">
+        <img src="press.jpg" alt="UOGATSA President">
+        <div class="profile-overlay-rect">
+            <h3>MR. SOLOMON GENE</h3>
+            <p>UOGATSA PRESIDENT 2026</p>
+            <p>Email: solomongene00@gmail.com</p>
+            <p>Phone: +675 70045708</p>
+        </div>
+    </div>
+</div>
+
+<!-- ACCESS MODAL -->
+<div id="access-modal" class="overlay">
+    <div class="modal">
+        <span class="close-btn" onclick="closeModal()">X</span>
+        <h2>Quick Access Panel</h2>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(event,'galleryTab')">Gallery</div>
+            <div class="tab" onclick="switchTab(event,'documentsTab')">Documents</div>
+            <div class="tab" onclick="switchTab(event,'departmentsTab')">Departments</div>
+        </div>
+
+        <div id="galleryTab" class="tab-content active">
+            <h3>Gallery</h3>
+            <div id="modal-gallery" class="gallery"></div>
+        </div>
+
+        <div id="documentsTab" class="tab-content">
+            <h3>Documents</h3>
+            <ul>
+                <li>UOGATSA Constitution.pdf</li>
+                <li>Annual Report 2024–2025</li>
+                <li>Yearly Planner 2025–2026</li>
+                <li>Executives Profile 2026</li>
+            </ul>
+        </div>
+
+        <div id="departmentsTab" class="tab-content">
+            <h3>Departments</h3>
+            <ul>
+                <li>Spiritual</li>
+                <li>Choir</li>
+                <li>Treasury</li>
+                <li>Secretary</li>
+                <li>Fundraising</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © <span id="year"></span> UOGATSA – All Rights Reserved | 
+    <a href="https://wa.me/67570045708" target="_blank">Contact Admin via WhatsApp</a>
+</footer>
+</div>
+
+<script>
+/* ---------------- BIBLE VERSE ---------------- */
+fetch("https://labs.bible.org/api/?passage=random&type=json")
+.then(r=>r.json())
+.then(v=>{
+    document.getElementById("verse-box").innerText =
+    `"${v[0].text}" — ${v[0].bookname} ${v[0].chapter}:${v[0].verse}`;
+});
+
+/* ---------------- ADMIN LOGIN ---------------- */
+function adminLogin(){
+    let pass = prompt("Enter Admin Password:");
+    if(pass === "70045708"){
+        document.getElementById("admin-panel").style.display="block";
+        alert("Admin access granted");
+    } else {
+        alert("Incorrect password");
+    }
+}
+
+/* ---------------- GALLERY UPLOAD ---------------- */
+let galleryImages = [];
+
+document.getElementById("uploader").addEventListener("change", function(){
+    const g = document.getElementById("gallery");
+    const mg = document.getElementById("modal-gallery");
+    g.innerHTML = "";
+    mg.innerHTML = "";
+    galleryImages = [...this.files];
+    
+    galleryImages.forEach(file=>{
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        g.appendChild(img);
+        
+        const mimg = document.createElement("img");
+        mimg.src = img.src;
+        mg.appendChild(mimg);
+    });
+    startSlideshow();
+});
+
+/* ---------------- DOCUMENT UPLOAD DISPLAY ---------------- */
+document.getElementById("docs").addEventListener("change", function(){
+    const list = document.getElementById("doc-list");
+    list.innerHTML = "<h4>Uploaded Documents:</h4><ul></ul>";
+    const ul = list.querySelector("ul");
+    [...this.files].forEach(file=>{
+        const li = document.createElement("li");
+        li.textContent = file.name;
+        ul.appendChild(li);
+    });
+});
+
+/* ---------------- MODAL ---------------- */
+function openModal(){ document.getElementById("access-modal").style.display="flex"; }
+function closeModal(){ document.getElementById("access-modal").style.display="none"; }
+
+/* ---------------- MODAL TABS ---------------- */
+function switchTab(e,name){
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    e.target.classList.add("active");
+    document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+    document.getElementById(name).classList.add("active");
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------------- SLIDESHOW ---------------- */
+let slideIndex = 0;
+function startSlideshow(){
+    const imgs = document.querySelectorAll("#gallery img");
+    if(imgs.length === 0) return;
+    imgs.forEach(i=>i.style.display="none");
+    slideIndex++;
+    if(slideIndex > imgs.length) slideIndex = 1;
+    imgs[slideIndex-1].style.display="block";
+    setTimeout(startSlideshow,3000); // Change image every 3 sec
+}
+</script>
+</body>
+</html>
